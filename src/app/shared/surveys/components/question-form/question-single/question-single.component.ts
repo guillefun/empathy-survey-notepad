@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './question-single.component.scss'
 })
 export class QuestionSingleComponent {
-
+  //TODO: Upgrade for the code: isolate the types of question in different components
 }

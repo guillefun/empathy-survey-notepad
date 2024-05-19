@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CommonComponentsModule } from '../../common/components/common-components.module';
+import { CommonComponentsModule } from './../../common/components/common-components.module';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionMultipleComponent } from './question-form/question-multiple/question-multiple.component';
 import { QuestionSingleComponent } from './question-form/question-single/question-single.component';

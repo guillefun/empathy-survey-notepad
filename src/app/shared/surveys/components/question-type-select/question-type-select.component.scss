@@ -30,7 +30,7 @@ fa-icon {
   margin: 0 0.5rem;
 }
 
-.type__action {
+.option__type__action {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -46,8 +46,24 @@ fa-icon {
   background: var(--active-button-background);
 }
 
-.type__action:hover {
+.option__type__action:hover {
   border: 2px solid var(--border-focus-color);
   color: var(--active-button-color) !important;
   background: var(--active-button-background);
+}
+
+.options__searchbar {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+
+  align-items: center;
+  height: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  color: var(--inactive-button-color);
+  input {
+    width: 70%;
+  }
 }

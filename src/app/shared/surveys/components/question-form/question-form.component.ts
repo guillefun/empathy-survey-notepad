@@ -146,6 +146,7 @@ export class QuestionFormComponent {
   changeQuestionType(type: QuestionType) {
     this.showChangeQuestionType = false;
     this.question.questionType = type;
+    this.update.emit(this.question);
   }
 
   setSaving(state: boolean) {

@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { faCircleCheck, faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { Component, EventEmitter, HostBinding, Input, Output, computed, signal } from '@angular/core';
+import { IconDefinition, faCircleCheck, faExpand, faListCheck, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { QuestionType, QuestionTypeData } from '../../../../core/surveys/models/survey.model';
 
 @Component({
@@ -51,6 +51,12 @@ export class QuestionTypeSelectComponent {
   isFocus: boolean = false;
   isComponentClicked: boolean = false;
 
+  searchValue: string = '';
+
+  faXmark: IconDefinition = faXmark;
+  faMagnifyingGlass: IconDefinition = faMagnifyingGlass;
+  faExpand: IconDefinition = faExpand;
+
   types: QuestionTypeData[] = [
     {
       name: "Single choice",
@@ -64,12 +70,22 @@ export class QuestionTypeSelectComponent {
     }
   ]
 
-  @HostBinding('@animations') animationState = true;
+  searchQuery = signal<string>('');
+  items = computed(() => {
+    const sq = this.searchQuery();
+    return this.types.filter(x => x.name.toLocaleLowerCase().includes(sq.toLocaleLowerCase()));
+  });
 
+  @HostBinding('@animations') animationState = true;
 
   selectType(type: QuestionType) {
     this.completed.emit(type)
   }
 
+  onSearchUpdated(sq: string) {
+    this.searchQuery.set(sq);
+  }
 
 }
+
+
