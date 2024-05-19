@@ -6,8 +6,8 @@ export class SurveyUtils {
   static surveyFactory() {
     let survey: SurveyDto = {
       id: CommonUtils.generateUUID(),
-      title: 'Urban Mobility Trends and Preferences',
-      description: 'Share your travel experiences and help us design better transportation systems for everyone',
+      title: 'New survey',
+      description: 'Click on any field to edit it.',
       questions: [
         {
           questionId: 1,
