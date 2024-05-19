@@ -36,6 +36,7 @@ input:focus{
 
 html, body {
   margin: 0;
+  padding: 0;
   font-size: 14px
 }
 
@@ -61,4 +62,6 @@ html, body {
   --inactive-button-color: #344054;
   --active-button-background: #F5FAFF;
   --inactive-button-background: #F5FAFF;
+  --navbar-background: #175CD3;
+  --navbar-color: #F5FAFF;
 }

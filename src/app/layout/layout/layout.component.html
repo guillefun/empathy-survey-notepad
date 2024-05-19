@@ -1,0 +1,22 @@
+<header class="header">
+  <nav>
+    <div class="nav__container">
+      @defer {
+        <img
+          class="nav__logo"
+          src="https://imagedelivery.net/ED1cNQpdUx5kbjCQ9bj2aQ/5e0daa10-62bb-4141-7be0-e1d3dee76a00/public"
+          alt="Empathy Research company logo">
+      }
+      <ul class="nav__list">
+        <li
+          class="nav__list__route"
+          (click)="goDashboard()"
+        >
+          DASHBOARD
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</header>
+<router-outlet></router-outlet>
