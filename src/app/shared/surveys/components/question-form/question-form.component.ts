@@ -12,6 +12,8 @@ import { Question, QuestionType } from '../../../../core/surveys/models/survey.m
 export class QuestionFormComponent {
   @Input() question!: Question;
 
+  @Input() index: number = 1;
+
   @ViewChildren('questionOptions')
   options!: QueryList<ElementRef>;
 
@@ -37,11 +39,14 @@ export class QuestionFormComponent {
 
     this.questionForm.get("title")?.patchValue(this.question.questionText);
 
-    this.question.options!.forEach((option:any, index: number) => {
+    this.question.options!.forEach((option: string, index: number) => {
+      let parsedValue = option;
+      if(parsedValue.startsWith("-"))
+        parsedValue = parsedValue.replace("-", '');
       if(this.questionForm.get(`option${index+1}`)) {
-        this.questionForm.get(`option${index+1}`)?.patchValue(option);
+        this.questionForm.get(`option${index+1}`)?.patchValue(parsedValue);
       } else {
-        this.questionForm.addControl(`option${index+1}`, new FormControl(option, [Validators.required]));
+        this.questionForm.addControl(`option${index+1}`, new FormControl(parsedValue, [Validators.required]));
       }
     });
 
@@ -102,7 +107,7 @@ export class QuestionFormComponent {
 
 
   updateOption(questionIdx: number, index: number) {
-
+    //TODO: ADD AGAIN HYPHENS
   }
 
 

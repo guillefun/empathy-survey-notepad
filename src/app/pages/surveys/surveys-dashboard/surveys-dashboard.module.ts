@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SurveysDashboardRoutingModule } from './surveys-dashboard-routing.module';
 import { SurveysDashboardComponent } from './surveys-dashboard.component';
 
@@ -11,6 +12,7 @@ import { SurveysDashboardComponent } from './surveys-dashboard.component';
   ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
     SurveysDashboardRoutingModule
   ]
 })

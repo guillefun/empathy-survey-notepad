@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Question, QuestionType } from '../../../core/surveys/models/survey.model';
 import { QuestionTypeSelectComponent } from '../../../shared/surveys/components/question-type-select/question-type-select.component';
 
@@ -12,7 +12,7 @@ export class SurveyBuilderComponent  implements OnInit {
   @ViewChild(QuestionTypeSelectComponent) typeComponent!: QuestionTypeSelectComponent;
   questions: Question[] = [];
   showAddQuestion: boolean = false;
-  faCoffee = faCoffee;
+  faPlus = faPlus;
 
   constructor(
   ) {}
@@ -21,11 +21,11 @@ export class SurveyBuilderComponent  implements OnInit {
     this.questions = [
       {
         questionId:	1,
-        questionText:	'Hola primer cuestionario',
+        questionText:	'',
         mandatoryInd:	true, //Required flag
         questionType: 1,
-        options:	['UNO', 'DOS', 'TRES' ],
-        randomizeOptionsInd:	true //randomize flag
+        options:	['-', '-'],
+        randomizeOptionsInd:	false //randomize flag
       }
     ]
 

@@ -8,13 +8,18 @@
       </header>
       @for ( question of questions; track question; let questionIdx = $index) {
         <div class="survey__question__container">
-          <empathy-question-form [question]="question"/>
+          <empathy-question-form [question]="question" [index]="questionIdx+1"/>
+        </div>
+      }
+      @if (questions.length === 0) {
+        <div class="survey__question__container">
+          <p class="empty__warning">Start by adding a question to the survey</p>
         </div>
       }
 
       <div class="survey__add__row">
         <button class="survey__add__row__button"  (click)="showQuestionTypeSelect()">
-          + Add question
+          <fa-icon [icon]="faPlus"></fa-icon> Add question
         </button>
         @if(showAddQuestion) {
           <div class="overlay" #trigger></div>
