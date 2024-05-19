@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SurveyComponentsModule } from '../../../shared/surveys/components/survey-components.module';
@@ -13,6 +14,7 @@ import { SurveyBuilderComponent } from './survey-builder.component';
   imports: [
     CommonModule,
     SurveyComponentsModule,
+    OverlayModule,
     SurveyBuilderRoutingModule
   ]
 })

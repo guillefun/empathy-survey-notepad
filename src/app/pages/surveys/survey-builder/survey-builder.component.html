@@ -8,14 +8,24 @@
       </header>
       @for ( question of questions; track question; let questionIdx = $index) {
         <div class="survey__question__container">
-          <empathy-question-form [question]="question" ></empathy-question-form>
+          <empathy-question-form [question]="question"/>
         </div>
       }
-      <div class="survey__add__row" (click)="addQuestion()">
-        <button class="survey__add__row__button">
+
+      <div class="survey__add__row">
+        <button class="survey__add__row__button"  (click)="showQuestionTypeSelect()">
           + Add question
         </button>
-
+        <div class="overlay" #trigger></div>
+        @if(showAddQuestion) {
+          <ng-template
+            cdkConnectedOverlay
+            [cdkConnectedOverlayOrigin]="trigger"
+            [cdkConnectedOverlayOpen]="showAddQuestion"
+          >
+            <empathy-question-type-select />
+          </ng-template>
+        }
       </div>
     </section>
   </main>

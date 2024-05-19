@@ -40,9 +40,11 @@ main {
 }
 
 .survey__add__row {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
   margin: 1rem;
   color: var(--add-color);
-  cursor: pointer;
 }
 
 .survey__add__row__button {
@@ -51,4 +53,5 @@ main {
   border: none;
   background: transparent;
   color: var(--add-color);
+  cursor: pointer;
 }

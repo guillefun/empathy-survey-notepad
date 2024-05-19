@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Question } from '../../../core/surveys/models/survey.model';
+import { QuestionTypeSelectComponent } from '../../../shared/surveys/components/question-type-select/question-type-select.component';
 
 @Component({
   selector: 'empathy-survey-builder',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './survey-builder.component.scss'
 })
 export class SurveyBuilderComponent  implements OnInit {
-  questions: any[] = [];
+  @ViewChild(QuestionTypeSelectComponent) typeComponent!: QuestionTypeSelectComponent;
+  questions: Question[] = [];
+  showAddQuestion: boolean = true;
 
   constructor(
   ) {}
@@ -39,6 +43,8 @@ export class SurveyBuilderComponent  implements OnInit {
     )
   }
 
-
+  showQuestionTypeSelect() {
+    this.showAddQuestion = !this.showAddQuestion;
+  }
 
 }

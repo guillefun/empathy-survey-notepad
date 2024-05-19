@@ -12,7 +12,7 @@ export class QuestionFormComponent {
   @ViewChildren('questionOptions')
   options!: QueryList<ElementRef>;
 
-
+  showChangeTypeQuestion: boolean = true;
   questionForm!: FormGroup
   constructor(
     private fb: FormBuilder
