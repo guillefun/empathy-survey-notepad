@@ -1,5 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, HostBinding, HostListener, Input } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { faCircleCheck, faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { QuestionType, QuestionTypeData } from '../../../../core/surveys/models/survey.model';
 
 @Component({
   selector: 'empathy-question-type-select',
@@ -36,28 +38,38 @@ import { Component, HostBinding, HostListener, Input } from '@angular/core';
   ]
 })
 export class QuestionTypeSelectComponent {
+
   @Input()
   isOpen: boolean = false;
+
+  @Input()
+  currentType: QuestionType | 0 = 0;
+
+  @Output()
+  completed: EventEmitter<any> = new EventEmitter;
+
+  isFocus: boolean = false;
+  isComponentClicked: boolean = false;
+
+  types: QuestionTypeData[] = [
+    {
+      name: "Single choice",
+      type: 1,
+      icon: faCircleCheck
+    },
+    {
+      name: "Multiple choice",
+      type: 2,
+      icon: faListCheck
+    }
+  ]
+
   @HostBinding('@animations') animationState = true;
 
-  @HostListener('click')
-  clickInside(event: any) {
-    console.log("clicked inside");
-    this.isFocus = true;
-    this.isComponentClicked = true;
+
+  selectType(type: number) {
+    this.completed.emit({type})
   }
 
-  @HostListener('document:click')
-  click() {
-    if (!this.isFocus && !this.isComponentClicked) {
-      console.log("clicked outside");
-       //TODO: EMIT CLOSE EVENT WITH NO DATA
-    }
-    this.isFocus = false;
-    this.isComponentClicked = false;
 
-  }
-
-  isFocus = false;
-  isComponentClicked = false;
 }

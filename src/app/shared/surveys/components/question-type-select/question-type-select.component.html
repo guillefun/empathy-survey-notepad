@@ -1,6 +1,16 @@
+<ul class="options">
+  @for (option of types; track option.type) {
+    <li
+      class="option__type"
+      (click)="selectType(option.type)"
+    >
+      <div class="type__action" [ngClass]="{'option__type__active': option.type === currentType}">
+        <fa-icon [icon]="option.icon"></fa-icon>
+        <span class="option__type__name">{{option.name}}</span>
+      </div>
+    </li>
+  }
 
-  <ul class="example-list">
-    <li>Item 1</li>
-    <li>Item 2</li>
-    <li>Item 3</li>
-  </ul>
+
+
+</ul>

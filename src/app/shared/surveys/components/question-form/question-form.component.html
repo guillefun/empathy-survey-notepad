@@ -4,17 +4,38 @@
       <div class="question__header__badge">
         Q{{question.questionId}}
       </div>
-      <div class="question-type-selector" #trigger (click)="showChangeTypeQuestion=!showChangeTypeQuestion">
-        Single choice
+      <div class="question-type-selector" #trigger>
+        @switch (question.questionType) {
+          @case (1) {
+            <empathy-select-type-button
+            [text]="'Single choice'"
+            [icon]="faCheck"
+            (action)="showChangeQuestionType=true"
+          />
+          }
+          @case (2) {
+            <empathy-select-type-button
+            [text]="'Multiple choice'"
+            [icon]="faMultiple"
+            (action)="showChangeQuestionType=true"
+          />
+          }
+        }
+
       </div>
-      <div class="overlay" ></div>
-      @if(showChangeTypeQuestion) {
+      @if(showChangeQuestionType) {
         <ng-template
           cdkConnectedOverlay
           [cdkConnectedOverlayOrigin]="trigger"
-          [cdkConnectedOverlayOpen]="showChangeTypeQuestion"
+          [cdkConnectedOverlayOpen]="showChangeQuestionType"
+          (overlayOutsideClick)="showChangeQuestionType = false"
+          (detach)="showChangeQuestionType = false"
+          cdkConnectedOverlayPush="true"
         >
-          <empathy-question-type-select />
+          <empathy-question-type-select
+            (completed)="changeQuestionType($event)"
+            [currentType]="question.questionType"
+          />
         </ng-template>
       }
     </div>
@@ -36,7 +57,7 @@
     </form>
     <div class="flags">
       <empathy-toggle [label]="'Randomize options'"/>
-      <empathy-toggle [label]="'Make required'"/>
+      <empathy-toggle [label]="'Make required'" [defaultValue]="true"/>
     </div>
   </div>
 

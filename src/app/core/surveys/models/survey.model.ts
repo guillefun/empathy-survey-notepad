@@ -1,3 +1,5 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 export interface Question {
   questionId:	number,
   questionText?:	string,
@@ -11,5 +13,11 @@ export interface SurveyDto {
   id: string,
   questions: Question[]
 }
+
+export interface QuestionTypeData {
+  name: string,
+  type: QuestionType,
+  icon: IconDefinition
+};
 
 export type QuestionType = 1 | 2 | 3 | 4;

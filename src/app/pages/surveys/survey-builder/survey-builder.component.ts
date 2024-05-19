@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Question } from '../../../core/surveys/models/survey.model';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { Question, QuestionType } from '../../../core/surveys/models/survey.model';
 import { QuestionTypeSelectComponent } from '../../../shared/surveys/components/question-type-select/question-type-select.component';
 
 @Component({
@@ -10,7 +11,8 @@ import { QuestionTypeSelectComponent } from '../../../shared/surveys/components/
 export class SurveyBuilderComponent  implements OnInit {
   @ViewChild(QuestionTypeSelectComponent) typeComponent!: QuestionTypeSelectComponent;
   questions: Question[] = [];
-  showAddQuestion: boolean = true;
+  showAddQuestion: boolean = false;
+  faCoffee = faCoffee;
 
   constructor(
   ) {}
@@ -30,13 +32,14 @@ export class SurveyBuilderComponent  implements OnInit {
 
   }
 
-  addQuestion() {
+  addQuestion(event: { type: QuestionType }) {
+    this.closeAddQuestionOverlay();
     this.questions.push(
       {
         questionId:	this.questions.length+1,
         questionText:	'',
         mandatoryInd:	true, //Required flag
-        questionType: 2,
+        questionType: event.type,
         options:	['',''],
         randomizeOptionsInd:	false //randomize flag
       }
@@ -44,7 +47,11 @@ export class SurveyBuilderComponent  implements OnInit {
   }
 
   showQuestionTypeSelect() {
-    this.showAddQuestion = !this.showAddQuestion;
+    this.showAddQuestion = true;
+  }
+
+  closeAddQuestionOverlay() {
+    this.showAddQuestion = false;
   }
 
 }

@@ -16,14 +16,19 @@
         <button class="survey__add__row__button"  (click)="showQuestionTypeSelect()">
           + Add question
         </button>
-        <div class="overlay" #trigger></div>
         @if(showAddQuestion) {
+          <div class="overlay" #trigger></div>
           <ng-template
             cdkConnectedOverlay
             [cdkConnectedOverlayOrigin]="trigger"
             [cdkConnectedOverlayOpen]="showAddQuestion"
+            (overlayOutsideClick)="closeAddQuestionOverlay()"
+            (detach)="closeAddQuestionOverlay()"
+            cdkConnectedOverlayPush="true"
           >
-            <empathy-question-type-select />
+            <empathy-question-type-select
+            (completed)="addQuestion($event)"
+            />
           </ng-template>
         }
       </div>

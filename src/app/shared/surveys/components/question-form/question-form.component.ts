@@ -1,5 +1,7 @@
 import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { IconDefinition, faCircleCheck, faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { Question, QuestionType } from '../../../../core/surveys/models/survey.model';
 
 @Component({
   selector: 'empathy-question-form',
@@ -7,12 +9,15 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrl: './question-form.component.scss'
 })
 export class QuestionFormComponent {
-  @Input() question: any;
+  @Input() question!: Question;
 
   @ViewChildren('questionOptions')
   options!: QueryList<ElementRef>;
 
-  showChangeTypeQuestion: boolean = true;
+  faCheck: IconDefinition = faCircleCheck;
+  faMultiple: IconDefinition = faListCheck;
+
+  showChangeQuestionType: boolean = false;
   questionForm!: FormGroup
   constructor(
     private fb: FormBuilder
@@ -28,7 +33,7 @@ export class QuestionFormComponent {
 
     this.questionForm.get("title")?.patchValue(this.question.questionText);
 
-    this.question.options.forEach((option:any, index: number) => {
+    this.question.options!.forEach((option:any, index: number) => {
       if(this.questionForm.get(`option${index+1}`)) {
         this.questionForm.get(`option${index+1}`)?.patchValue(option);
       } else {
@@ -41,9 +46,9 @@ export class QuestionFormComponent {
 
   addOption(idx: number) {
     console.log(idx)
-    let index = this.question.options.length;
+    let index = this.question.options!.length;
     console.log("options lenght", index)
-    this.question.options.push(`Option ${index+1}`)
+    this.question.options!.push(`Option ${index+1}`)
 
     let existingForm = this.questionForm.get(`option${index+1}`)
 
@@ -57,15 +62,15 @@ export class QuestionFormComponent {
   }
 
   deleteOption(index: number) {
-    let options = this.question.options.length;
+    let options = this.question.options!.length;
     console.log(this.questionForm.get("option"+(index+1))?.value)
     if(options > 2
       && (this.questionForm.get("option"+(index+1))?.value === ''
       || this.questionForm.get("option"+(index+1))?.value === null)) {
       console.log("options lenght", (index+1))
-      let deleteOption = this.question.options[index];
+      let deleteOption = this.question.options![index];
       console.log("options", this.question.options)
-      this.question.options = this.question.options.filter((option: any) => {return option !== deleteOption})
+      this.question.options = this.question.options!.filter((option: any) => {return option !== deleteOption})
       this.questionForm.removeControl(`option${index+1}`);
       console.log(index)
       requestAnimationFrame(()=> {
@@ -78,5 +83,11 @@ export class QuestionFormComponent {
 
   updateOption(questionIdx: number, index: number) {
 
+  }
+
+
+  changeQuestionType(event: { type: QuestionType }) {
+    this.showChangeQuestionType = false;
+    this.question.questionType = event.type;
   }
 }
