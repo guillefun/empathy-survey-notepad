@@ -1,0 +1,40 @@
+:host {
+  box-sizing: border-box;
+}
+
+nav {
+  background: var(--navbar-background);
+  color: var(--navbar-color);
+  font-weight: bolder;
+  height: 4rem;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: auto;
+}
+
+nav .nav__list {
+  height: 4rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav__list {
+  margin: 0;
+}
+
+.nav__list .nav__list__route {
+  list-style-type: none;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.nav__logo {
+  max-width: 3.5rem;
+  max-height: 3.5rem;
+  border-radius: 150%;
+}

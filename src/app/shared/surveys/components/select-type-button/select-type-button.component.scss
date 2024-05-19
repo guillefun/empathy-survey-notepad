@@ -1,0 +1,27 @@
+.type__name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+fa-icon {
+  margin: 0 0.5rem;
+}
+
+.type__action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.75rem;
+  color: var(--inactive-button-color);
+  background: var(--inactive-button-background);
+}
+
+.type__action:focus {
+  border: 2px solid var(--border-focus-color);
+  color: var(--active-button-color) !important;
+  background: var(--active-button-background);
+}

@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import './themes/index';
+
+p {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--text-color);
+}
+
+main {
+  height: 100vh;
+  max-width: 1456px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input{
+  text-decoration: none;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+input:focus{
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+.overlay {
+  height: 0;
+  width: 0;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --border-color: #d0d5dd;
+  --border-focus-color: #a7c9f9;
+  --light-border-color: #dee2e7;
+  --toggle-checked: #1570ef;
+  --toggle-unchecked: #c3c3c3;
+  --flags-divider-color: #f4f5f7;
+  --badge-color: #363F47;
+  --badge-text-color: #FCFCFD;
+  --add-color: #175CD3;
+  --survey-title-color: #101828;
+  --survey-subtitle-color: #344054;
+  --text-color: #182230;
+  --label-color: #344054;
+  --active-button-color: #175CD3;
+  --inactive-button-color: #344054;
+  --active-button-background: #F5FAFF;
+  --inactive-button-background: #F5FAFF;
+  --navbar-background: #175CD3;
+  --navbar-color: #F5FAFF;
+}

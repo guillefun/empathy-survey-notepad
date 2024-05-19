@@ -1,0 +1,39 @@
+.question__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.question__header__badge {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+  margin-right: 0.75rem;
+  background-color: var(--badge-color);
+  color: var(--badge-text-color);
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 2px #e6e6e6;
+}
+
+.question__form {
+  margin: 1rem 0;
+}
+
+.saving__text {
+  margin-top: 1rem;
+}
+
+.question__footer {
+  display: grid;
+  width:100%;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--flags-divider-color);
+}
+
+.flags {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}

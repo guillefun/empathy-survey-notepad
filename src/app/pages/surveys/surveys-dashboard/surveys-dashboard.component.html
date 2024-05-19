@@ -1,0 +1,26 @@
+<main>
+  <section class="dashboard">
+
+    @for(survey of surveys; track survey.id) {
+      <div class="dashboard__card" [routerLink]="'/survey/'+survey.id">
+        <div class="dashboard__card__header">
+          <img class="dashboard__card__hexagon" src='https://icongr.am/material/hexagon.svg?size=25&color=175CD3'/>
+          <span class="dashboard__card__title">{{survey.title}}</span>
+        </div>
+        <div class="dashboard__card__description">
+          {{survey.questions.length}} questions
+        </div>
+      </div>
+    }
+    <div class="dashboard__newcard" (click)="createSurvey()">
+      <div class="dashboard__newcard__header">
+        <span class="dashboard__newcard__title">
+          <fa-icon [icon]="faPlus"></fa-icon>
+           Add new survey
+        </span>
+      </div>
+    </div>
+
+  </section>
+</main>
+

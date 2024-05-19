@@ -1,0 +1,36 @@
+<ul class="options">
+  <div class="options__searchbar">
+    <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+    <input
+      class="options__searchbar__search"
+      #searchQuery
+      type="text"
+      (input)="onSearchUpdated(searchQuery.value)"
+      autocomplete="off"
+      placeholder="Search"
+    />
+    <fa-icon [icon]="faExpand"></fa-icon>
+  </div>
+  @for (option of items(); track option.type) {
+    <li
+      class="option__type"
+      (click)="selectType(option.type)"
+    >
+      <div class="option__type__action" [ngClass]="{'option__type__active': option.type === currentType}">
+        <fa-icon [icon]="option.icon"></fa-icon>
+        <span class="option__type__name">{{option.name}}</span>
+      </div>
+    </li>
+  }
+
+  @if(items().length === 0) {
+    <li
+      class="option__type"
+    >
+      <div class="option__type__action">
+        <fa-icon [icon]="faXmark"></fa-icon>
+        <span class="option__type__name">No results</span>
+      </div>
+    </li>
+  }
+</ul>

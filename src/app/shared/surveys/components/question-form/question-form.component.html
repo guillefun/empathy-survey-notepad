@@ -1,0 +1,67 @@
+<article>
+    <div class="question__header">
+      <div class="question__header__badge">Q{{ index }}</div>
+      <div #trigger>
+        @switch (question.questionType) {
+          @case (1) {
+            <empathy-select-type-button
+              [text]="'Single choice'"
+              [icon]="faCheck"
+              (action)="showChangeQuestionType = true"
+            />
+          }
+          @case (2) {
+          <empathy-select-type-button
+            [text]="'Multiple choice'"
+            [icon]="faMultiple"
+            (action)="showChangeQuestionType = true"
+          />
+          }
+        }
+      </div>
+      @if(showChangeQuestionType) {
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="trigger"
+          [cdkConnectedOverlayOpen]="showChangeQuestionType"
+          (overlayOutsideClick)="showChangeQuestionType = false"
+          (detach)="showChangeQuestionType = false"
+          cdkConnectedOverlayPush="true"
+        >
+          <empathy-question-type-select
+            (completed)="changeQuestionType($event)"
+            [currentType]="question.questionType"
+          />
+        </ng-template>
+      }
+    </div>
+    <form class="question__form" action="" [formGroup]="questionForm">
+      <input
+        type="text"
+        placeholder="Type your question and answers options here"
+        formControlName="title"
+      />
+      <ul class="ion-no-margin">
+        @for(option of question.options; track option; let index = $index; let last = $last) {
+          <li>
+            <input
+              #questionOptions
+              type="text"
+              placeholder="Option {{ index + 1 }}"
+              formControlName="option{{ index + 1 }}"
+              (keyup.enter)="last ? addOption() : jumpOption(index)"
+              (keydown.backspace)="last ? deleteOption(index) : ''"
+            />
+          </li>
+        }
+      </ul>
+    </form>
+    <div class="question__footer">
+      <span class="saving__text"> @if(saving) { Saving... } </span>
+
+      <div class="flags">
+        <empathy-toggle [label]="'Randomize options'" [defaultValue]="question.randomizeOptionsInd" (valueChange)="updateRandomizeFlag($event)"/>
+        <empathy-toggle [label]="'Make required'" [defaultValue]="question.mandatoryInd" (valueChange)="updateMandatoryFlag($event)"/>
+      </div>
+    </div>
+</article>
