@@ -1,1 +1,33 @@
-<p>question-form works!</p>
+<article>
+  <div class="app-question-container">
+    <div style="align-items: center;">
+      <div class="question-badge">
+        Q{{question.questionId}}
+      </div>
+      <div class="question-type-selector">
+        Single choice
+      </div>
+    </div>
+    <form action="" [formGroup]="questionForm">
+      <input type="text" placeholder="Type your question and answers options here" formControlName="title"/>
+      <ul class="ion-no-margin">
+        @for(option of question.options; track option; let index = $index; let last = $last) {
+          <li >
+            <input #questionOptions
+            type="text"
+            placeholder="Option {{index+1}}"
+            formControlName="option{{index+1}}"
+            (keyup.enter)="last ? addOption(0) : ''"
+            (keyup.backspace)="last ? deleteOption(index) : ''"
+            />
+          </li>
+        }
+      </ul>
+    </form>
+    <div style="display: flex; flex-direction: row; justify-content: end;">
+      <empathy-toggle [label]="'Randomize options'"/>
+      <empathy-toggle [label]="'Make required'"/>
+    </div>
+  </div>
+
+</article>

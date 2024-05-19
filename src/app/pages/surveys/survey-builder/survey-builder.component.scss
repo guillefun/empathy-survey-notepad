@@ -1,0 +1,61 @@
+main {
+  width: 100wh;
+  height: 100vh;
+}
+
+section {
+  width: 100wh;
+  min-height: 70vh;
+  margin: 3rem;
+  border: 2px solid lightslategray;
+  border-radius: 12px;
+}
+
+.app-question-container {
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid lightslategray;
+  border-radius: 12px;
+}
+
+.question-badge {
+  padding: 0.25rem;
+  margin: 0.25rem;
+  background-color: gray;
+  color: #e6e6e6;
+  border-radius: 3px;
+  box-shadow: 8px 8px 8px #e6e6e6;
+}
+
+
+ion-toggle {
+  padding: 12px;
+
+  --handle-width: 1rem;
+  --handle-height: 1rem;
+  --handle-max-height: auto;
+
+
+  contain: none;
+}
+
+ion-toggle::part(track) {
+  height: 1rem;
+  padding: 3px 2px;
+  width: 2.5rem;
+
+  background: #ddd;
+
+  /* Required for iOS handle to overflow the height of the track */
+  overflow: visible;
+}
+
+ion-toggle.toggle-checked::part(track) {
+  background: #2201f9;
+}
+
+
+ion-toggle::part(handle) {
+  background: #ffffff;
+  box-shadow: none;
+}

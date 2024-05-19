@@ -1,10 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'empathy-survey-builder',
   templateUrl: './survey-builder.component.html',
   styleUrl: './survey-builder.component.scss'
 })
-export class SurveyBuilderComponent {
+export class SurveyBuilderComponent  implements OnInit {
+  questions: any[] = [];
+
+  constructor(
+  ) {}
+
+  ngOnInit(): void {
+    this.questions = [
+      {
+        questionId:	1,
+        questionText:	'Hola primer cuestionario',
+        mandatoryInd:	true, //Required flag
+        questionType: 1,
+        options:	['UNO', 'DOS', 'TRES' ],
+        randomizeOptionsInd:	true //randomize flag
+      }
+    ]
+
+
+  }
+
+  addQuestion() {
+    this.questions.push(
+      {
+        questionId:	this.questions.length+1,
+        questionText:	'',
+        mandatoryInd:	true, //Required flag
+        questionType: 2,
+        options:	['',''],
+        randomizeOptionsInd:	false //randomize flag
+      }
+    )
+  }
+
+
 
 }

@@ -1,1 +1,13 @@
-<p>survey-builder works!</p>
+  <main>
+    <section>
+      <h1>Urban Mobility Trends and Preferences</h1>
+      <h2>Share your travel experiences and help us design better transportation systems for everyone</h2>
+
+      @for ( question of questions; track question; let questionIdx = $index) {
+        <empathy-question-form [question]="question" ></empathy-question-form>
+      }
+      <div style="margin: 1rem; cursor: pointer;" (click)="addQuestion()">
+        + Add question
+      </div>
+    </section>
+  </main>
