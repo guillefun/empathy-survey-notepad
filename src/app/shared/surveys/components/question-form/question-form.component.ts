@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IconDefinition, faCircleCheck, faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Question, QuestionType } from '../../../../core/surveys/models/survey.model';
 
 @Component({
@@ -19,6 +20,9 @@ export class QuestionFormComponent {
 
   showChangeQuestionType: boolean = false;
   questionForm!: FormGroup
+
+  saving: boolean = false;
+
   constructor(
     private fb: FormBuilder
   ) {}
@@ -41,7 +45,23 @@ export class QuestionFormComponent {
       }
     });
 
-    this.questionForm.updateValueAndValidity()
+    this.questionForm.updateValueAndValidity();
+
+    this.questionForm.valueChanges
+      .pipe(
+          debounceTime(2000),
+          distinctUntilChanged()
+      )
+      .subscribe(res => {
+          console.log(res)
+          this.setSaving(false)
+      });
+
+      this.questionForm.valueChanges
+      .subscribe(res => {
+          console.log(res)
+          this.setSaving(true)
+      });
   }
 
   addOption(idx: number) {
@@ -89,5 +109,9 @@ export class QuestionFormComponent {
   changeQuestionType(event: { type: QuestionType }) {
     this.showChangeQuestionType = false;
     this.question.questionType = event.type;
+  }
+
+  setSaving(state: boolean) {
+    this.saving = state
   }
 }

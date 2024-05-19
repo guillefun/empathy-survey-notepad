@@ -1,10 +1,3 @@
-.flags {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  border-top: 1px solid var(--flags-divider-color);
-}
-
 .question__header {
   display: flex;
   flex-direction: row;
@@ -25,4 +18,22 @@
 
 .question__form {
   margin: 1rem 0;
+}
+
+.saving__text {
+  margin-top: 1rem;
+}
+
+.question__footer {
+  display: grid;
+  width:100%;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--flags-divider-color);
+}
+
+.flags {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
 }
