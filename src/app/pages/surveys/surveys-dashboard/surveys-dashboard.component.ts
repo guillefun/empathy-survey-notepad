@@ -20,6 +20,26 @@ export class SurveysDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadSurveys();
+  }
+
+  createSurvey() {
+    let survey = SurveyUtils.surveyFactory();
+
+    this.surveyService.postSurvey(survey).subscribe({
+      next: (res: SurveyDto)=> {
+        console.log(res)
+        //IF THE OBJECT WAS RETURNED WE CAN THEN NAVIGATE
+        this.loadSurveys();
+      },
+      error: (_err) => {
+
+      }
+    })
+
+  }
+
+  loadSurveys() {
     this.surveyService.getAllSurveys().subscribe({
       next: (res: SurveyDto[])=> {
         console.log(res)
@@ -30,20 +50,4 @@ export class SurveysDashboardComponent implements OnInit {
       }
     })
   }
-
-  createSurvey() {
-    let survey = SurveyUtils.surveyFactory();
-
-    this.surveyService.postSurvey(survey).subscribe({
-      next: (res: SurveyDto)=> {
-        console.log(res)
-        this.surveys.push(res)
-      },
-      error: (_err) => {
-
-      }
-    })
-    //TODO IMPLEMENT THE HTTP SERVICE, THEN NAVIGATE
-  }
-
 }
