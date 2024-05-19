@@ -3,10 +3,10 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 export interface Question {
   questionId:	number,
   questionText?:	string,
-  mandatoryInd:	boolean, //Required flag
+  mandatoryInd:	boolean,
   questionType: QuestionType,
   options?:	string[],
-  randomizeOptionsInd:	boolean //randomize flag
+  randomizeOptionsInd:	boolean
 }
 
 export interface SurveyDto {

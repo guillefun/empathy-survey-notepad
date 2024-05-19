@@ -23,7 +23,6 @@ export class ToggleComponent implements OnInit {
 
   setValue() {
     this.value = !this.value;
-    console.log("this value changes")
     this.valueChange.emit(this.value);
   }
 }

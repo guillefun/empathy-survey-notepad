@@ -84,12 +84,11 @@ export class QuestionFormComponent {
           questionId: this.question.questionId,
           questionText: res.title,
           mandatoryInd: this.question.mandatoryInd,
-          questionType: this.question.questionType, // Multiple Choice
+          questionType: this.question.questionType,
           options: options,
           randomizeOptionsInd: this.question.randomizeOptionsInd,
         };
         this.setSaving(false)
-        console.log(questionData)
         this.update.emit(questionData);
       });
   }

@@ -41,7 +41,7 @@ export class SurveyBuilderComponent implements OnInit {
     });
 
     this.route.params.subscribe((params) => {
-      this.surveyId = params['id']; // Access the 'id' parameter from the URL
+      this.surveyId = params['id'];
       this.surveyService.getSurvey(this.surveyId).subscribe({
         next: (res: SurveyDto) => {
           this.initSurveyForm(res);

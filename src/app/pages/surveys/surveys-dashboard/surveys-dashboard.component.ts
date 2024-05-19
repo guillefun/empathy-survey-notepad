@@ -28,7 +28,6 @@ export class SurveysDashboardComponent implements OnInit {
 
     this.surveyService.postSurvey(survey).subscribe({
       next: (res: SurveyDto)=> {
-        console.log(res)
         //IF THE OBJECT WAS RETURNED WE CAN THEN NAVIGATE
         this.loadSurveys();
       },
@@ -42,7 +41,6 @@ export class SurveysDashboardComponent implements OnInit {
   loadSurveys() {
     this.surveyService.getAllSurveys().subscribe({
       next: (res: SurveyDto[])=> {
-        console.log(res)
        this.surveys = res;
       },
       error: (_err) => {
