@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
+import { Component, HostBinding, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -15,10 +16,36 @@ import { QuestionTypeSelectComponent } from '../../../shared/surveys/components/
   selector: 'empathy-survey-builder',
   templateUrl: './survey-builder.component.html',
   styleUrl: './survey-builder.component.scss',
+  animations: [
+    trigger('listAnimation', [
+      transition('false => true', [
+        query('.survey__header, .survey__question__container', [
+          style({ opacity: 0 }),
+          stagger(100, [
+            animate('0.5s', style({ opacity: 1 }))
+          ])
+        ], { optional: true })
+      ])
+    ]),
+    trigger('addAnimation', [
+      transition(':enter', [
+        query('.survey__add__row', [
+          style({ opacity: 0 }),
+          stagger(100, [
+            animate('1.2s', style({ opacity: 1 }))
+          ])
+        ], { optional: true })
+      ])
+    ])
+  ],
 })
 export class SurveyBuilderComponent implements OnInit {
   @ViewChild(QuestionTypeSelectComponent)
   typeComponent!: QuestionTypeSelectComponent;
+
+  @HostBinding('@addAnimation') addAnimationState = true;
+
+  listAnimationState: boolean = false;
 
   surveyId: string = '';
   survey: SurveyDto | null = null;
@@ -60,6 +87,7 @@ export class SurveyBuilderComponent implements OnInit {
     this.survey = survey;
     this.surveyForm.get('title')?.setValue(this.survey.title);
     this.surveyForm.get('description')?.setValue(this.survey.description);
+    this.updateAnimationState(true);
   }
 
   updateSurvey() {
@@ -73,7 +101,7 @@ export class SurveyBuilderComponent implements OnInit {
       .updateSurvey(updatedSurvey, this.surveyId)
       .subscribe({
         next: (res: SurveyDto) => {
-          //TODO:
+          //TODO: NO SURVEY IS RETURNED
         },
         error: (_err) => {
           //TODO: ERROR HANDLING
@@ -119,5 +147,9 @@ export class SurveyBuilderComponent implements OnInit {
 
   closeAddQuestionOverlay() {
     this.showAddQuestion = false;
+  }
+
+  updateAnimationState(state: boolean) {
+    this.listAnimationState = state;
   }
 }

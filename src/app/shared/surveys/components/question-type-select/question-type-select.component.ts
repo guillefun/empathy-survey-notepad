@@ -48,6 +48,8 @@ export class QuestionTypeSelectComponent {
   @Output()
   completed: EventEmitter<QuestionType> = new EventEmitter<QuestionType>();
 
+  @HostBinding('@animations') animationState = true;
+
   isFocus: boolean = false;
   isComponentClicked: boolean = false;
 
@@ -76,7 +78,7 @@ export class QuestionTypeSelectComponent {
     return this.types.filter(x => x.name.toLocaleLowerCase().includes(sq.toLocaleLowerCase()));
   });
 
-  @HostBinding('@animations') animationState = true;
+
 
   selectType(type: QuestionType) {
     this.completed.emit(type)

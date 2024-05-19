@@ -1,6 +1,5 @@
 <main>
-  <section class="dashboard">
-
+  <section class="dashboard" [@listAnimation]="surveys.length > 0">
     @for(survey of surveys; track survey.id) {
       <div class="dashboard__card" [routerLink]="'/survey/'+survey.id">
         <div class="dashboard__card__header">
@@ -11,15 +10,19 @@
           {{survey.questions.length}} questions
         </div>
       </div>
+
+      @if($last){
+        <div class="dashboard__card dashboard__newcard" (click)="createSurvey()">
+          <div class="dashboard__newcard__header">
+            <span class="dashboard__newcard__title">
+              <fa-icon [icon]="faPlus"></fa-icon>
+                Add new survey
+            </span>
+          </div>
+        </div>
+      }
     }
-    <div class="dashboard__newcard" (click)="createSurvey()">
-      <div class="dashboard__newcard__header">
-        <span class="dashboard__newcard__title">
-          <fa-icon [icon]="faPlus"></fa-icon>
-           Add new survey
-        </span>
-      </div>
-    </div>
+
 
   </section>
 </main>
