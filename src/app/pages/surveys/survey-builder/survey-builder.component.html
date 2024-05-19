@@ -6,7 +6,7 @@
           <input type="text" class="survey__subtitle" formControlName="description"/>
         </form>
       </header>
-      @for ( question of survey?.questions; track question; let questionIdx = $index) {
+      @for ( question of survey?.questions; track question.questionId; let questionIdx = $index) {
         <div class="survey__question__container">
           <empathy-question-form
             [question]="question"

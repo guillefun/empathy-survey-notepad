@@ -48,7 +48,7 @@ export class SurveyBuilderComponent implements OnInit {
 
           this.surveyForm.valueChanges
             .pipe(debounceTime(1000), distinctUntilChanged())
-            .subscribe((res) => {
+            .subscribe((_res) => {
               this.updateSurvey();
             });
         },
@@ -82,8 +82,22 @@ export class SurveyBuilderComponent implements OnInit {
   }
 
   updateSurveyQuestions(index: number, question: Question) {
-    this.survey!.questions[index] = question;
-    this.updateSurvey();
+    this.survey!.questions[index].questionId = question.questionId;
+    let fixedIndex = this.survey!.questions
+                          .findIndex((q: Question) => q.questionId == question.questionId);
+
+    if(fixedIndex === index) {
+      this.survey!.questions[index].questionText = question.questionText;
+      this.survey!.questions[index].questionType = question.questionType;
+      this.survey!.questions[index].randomizeOptionsInd = question.randomizeOptionsInd;
+      this.survey!.questions[index].options = question.options;
+      this.survey!.questions[index].mandatoryInd = question.mandatoryInd;
+
+      this.updateSurvey();
+    } else {
+      //TODO: Handling error
+    }
+
   }
 
   addQuestion(type: QuestionType ) {
