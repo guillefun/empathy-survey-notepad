@@ -2,17 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
+  margin: 1rem 1rem 0 1rem;
 }
 
 .toggle__label {
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
   margin: 0 0.25rem;
+  color: var(--label-color)
 }
 
 .toggle__switch {
-  --width: 2.5rem;
-  --height: 1rem;
+  --width: 2.25rem;
+  --height: 1.25rem;
   --border-radius: 0.75rem;
   cursor: pointer;
 }
@@ -22,25 +25,26 @@
 }
 
 .toggle__switch__handle {
-  --handle-width: 0.75rem;
-  --handle-height: 0.75rem;
+  --handle-width: 0.875rem;
+  --handle-height: 0.875rem;
   position: relative;
   width: var(--width);
   height: var(--height);
   border-radius: var(--border-radius);
-  background: red;
+  background: var(--toggle-unchecked);
   transition: background 0.2s;
 }
 
 .toggle__switch__input:checked ~ .toggle__switch__handle {
-  background: blue;
+  background: var(--toggle-checked);
 }
 
 .toggle__switch__handle::after {
   content: '';
   position: absolute;
-  top: 2px;
-  left: 4px;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
   height: var(--handle-height);
   width: var(--handle-width);
   background: #ffffff;
@@ -49,5 +53,5 @@
 }
 
 .toggle__switch__input:checked ~ .toggle__switch__handle::after {
-  transform: translateX(1.25rem);
+  transform: translateX(1rem) translateY(-50%);
 }

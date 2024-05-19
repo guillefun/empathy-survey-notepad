@@ -1,13 +1,21 @@
   <main>
-    <section>
-      <h1>Urban Mobility Trends and Preferences</h1>
-      <h2>Share your travel experiences and help us design better transportation systems for everyone</h2>
-
+    <section class="survey">
+      <header class="survey__header">
+        <h1 class="survey__title">Urban Mobility Trends and Preferences</h1>
+        <p class="survey__subtitle">
+          Share your travel experiences and help us design better transportation systems for everyone
+        </p>
+      </header>
       @for ( question of questions; track question; let questionIdx = $index) {
-        <empathy-question-form [question]="question" ></empathy-question-form>
+        <div class="survey__question__container">
+          <empathy-question-form [question]="question" ></empathy-question-form>
+        </div>
       }
-      <div style="margin: 1rem; cursor: pointer;" (click)="addQuestion()">
-        + Add question
+      <div class="survey__add__row" (click)="addQuestion()">
+        <button class="survey__add__row__button">
+          + Add question
+        </button>
+
       </div>
     </section>
   </main>

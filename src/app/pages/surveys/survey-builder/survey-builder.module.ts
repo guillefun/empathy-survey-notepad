@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { QuestionFormModule } from '../../../shared/surveys/components/question-form/question-form.module';
+import { SurveyComponentsModule } from '../../../shared/surveys/components/survey-components.module';
 import { SurveyBuilderRoutingModule } from './survey-builder-routing.module';
 import { SurveyBuilderComponent } from './survey-builder.component';
 
@@ -12,7 +12,7 @@ import { SurveyBuilderComponent } from './survey-builder.component';
   ],
   imports: [
     CommonModule,
-    QuestionFormModule,
+    SurveyComponentsModule,
     SurveyBuilderRoutingModule
   ]
 })
