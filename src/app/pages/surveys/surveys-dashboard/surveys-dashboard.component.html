@@ -5,7 +5,7 @@
       <div class="dashboard__card" [routerLink]="'/survey/'+survey.id">
         <div class="dashboard__card__header">
           <img class="dashboard__card__hexagon" src='https://icongr.am/material/hexagon.svg?size=25&color=175CD3'/>
-          <span class="dashboard__card__title">Urban Mobility Trends and Preferences - {{survey.id}}</span>
+          <span class="dashboard__card__title">{{survey.title}}</span>
         </div>
         <div class="dashboard__card__description">
           {{survey.questions.length}} questions
