@@ -1,8 +1,7 @@
 <article>
-  <div class="app-question-container">
     <div class="question__header">
       <div class="question__header__badge">Q{{ index }}</div>
-      <div class="question-type-selector" #trigger>
+      <div #trigger>
         @switch (question.questionType) {
           @case (1) {
             <empathy-select-type-button
@@ -65,5 +64,4 @@
         <empathy-toggle [label]="'Make required'" [defaultValue]="question.mandatoryInd" (valueChange)="updateMandatoryFlag($event)"/>
       </div>
     </div>
-  </div>
 </article>
