@@ -13,7 +13,7 @@ export class ToggleComponent implements OnInit {
   defaultValue: boolean = false;
 
   @Output()
-  valueChange: EventEmitter<boolean> = new EventEmitter;
+  valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   value: boolean = false;
 

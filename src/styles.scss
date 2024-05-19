@@ -9,8 +9,10 @@ p {
 }
 
 main {
-  width: 100wh;
   height: 100vh;
+  max-width: 1456px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input{

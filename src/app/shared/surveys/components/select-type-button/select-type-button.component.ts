@@ -15,7 +15,7 @@ export class SelectTypeButtonComponent {
   icon!: IconDefinition;
 
   @Output()
-  action: EventEmitter<boolean> = new EventEmitter;
+  action: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   iconArrow: IconDefinition = faChevronDown;
 

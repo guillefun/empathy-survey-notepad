@@ -1,8 +1,16 @@
-import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IconDefinition, faCircleCheck, faListCheck } from '@fortawesome/free-solid-svg-icons';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Question, QuestionType } from '../../../../core/surveys/models/survey.model';
+
+
+interface QuestionForm {
+  title: string,
+  option1: string,
+  option2: string,
+  [key: string]: string
+}
 
 @Component({
   selector: 'empathy-question-form',
@@ -10,12 +18,19 @@ import { Question, QuestionType } from '../../../../core/surveys/models/survey.m
   styleUrl: './question-form.component.scss'
 })
 export class QuestionFormComponent {
-  @Input() question!: Question;
+  @Input()
+  question!: Question;
 
-  @Input() index: number = 1;
+  @Input()
+  index: number = 1;
+
+  @Output()
+  update: EventEmitter<Question> = new EventEmitter<Question>();
 
   @ViewChildren('questionOptions')
   options!: QueryList<ElementRef>;
+
+  readonly MINIMUM_OPTIONS = 2;
 
   faCheck: IconDefinition = faCircleCheck;
   faMultiple: IconDefinition = faListCheck;
@@ -29,7 +44,7 @@ export class QuestionFormComponent {
     private fb: FormBuilder
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.questionForm = this.fb.group({
       title: ['', [Validators.required]],
       option1: ['', [Validators.required]],
@@ -53,26 +68,39 @@ export class QuestionFormComponent {
     this.questionForm.updateValueAndValidity();
 
     this.questionForm.valueChanges
+    .subscribe(_res => {
+        this.setSaving(true)
+    });
+
+    this.questionForm.valueChanges
       .pipe(
-          debounceTime(2000),
+          debounceTime(1000),
           distinctUntilChanged()
       )
-      .subscribe(res => {
-          console.log(res)
-          this.setSaving(false)
-      });
+      .subscribe((res: QuestionForm) => {
+        let options: string[] = this.updateOption(res);
 
-      this.questionForm.valueChanges
-      .subscribe(res => {
-          console.log(res)
-          this.setSaving(true)
+        let questionData: Question = {
+          questionId: this.question.questionId,
+          questionText: res.title,
+          mandatoryInd: this.question.mandatoryInd,
+          questionType: this.question.questionType, // Multiple Choice
+          options: options,
+          randomizeOptionsInd: this.question.randomizeOptionsInd,
+        };
+        this.setSaving(false)
+        console.log(questionData)
+        this.update.emit(questionData);
       });
   }
 
-  addOption(idx: number) {
-    console.log(idx)
+  jumpOption(index: number) {
+    this.options.get(index+1)?.nativeElement.focus()
+  }
+
+  addOption() {
     let index = this.question.options!.length;
-    console.log("options lenght", index)
+
     this.question.options!.push(`Option ${index+1}`)
 
     let existingForm = this.questionForm.get(`option${index+1}`)
@@ -83,21 +111,20 @@ export class QuestionFormComponent {
     requestAnimationFrame(()=>{
      this.options.last.nativeElement.focus()
     })
-
   }
 
   deleteOption(index: number) {
-    let options = this.question.options!.length;
-    console.log(this.questionForm.get("option"+(index+1))?.value)
-    if(options > 2
+    let optionsLength = this.question.options!.length;
+
+    if(optionsLength > this.MINIMUM_OPTIONS
       && (this.questionForm.get("option"+(index+1))?.value === ''
       || this.questionForm.get("option"+(index+1))?.value === null)) {
-      console.log("options lenght", (index+1))
+
       let deleteOption = this.question.options![index];
-      console.log("options", this.question.options)
+
       this.question.options = this.question.options!.filter((option: any) => {return option !== deleteOption})
       this.questionForm.removeControl(`option${index+1}`);
-      console.log(index)
+
       requestAnimationFrame(()=> {
         if(index > 0)
           this.options.last.nativeElement.focus()
@@ -105,18 +132,33 @@ export class QuestionFormComponent {
     }
   }
 
+  updateOption(res: QuestionForm) {
+    let options: string[] = [];
+    Object.keys(res).forEach((key: string)=>{
+      if(key.startsWith("option")){
+        options.push(`-${res[key]}`);
+      }
+    });
 
-  updateOption(questionIdx: number, index: number) {
-    //TODO: ADD AGAIN HYPHENS
+    return options;
   }
 
-
-  changeQuestionType(event: { type: QuestionType }) {
+  changeQuestionType(type: QuestionType) {
     this.showChangeQuestionType = false;
-    this.question.questionType = event.type;
+    this.question.questionType = type;
   }
 
   setSaving(state: boolean) {
     this.saving = state
+  }
+
+  updateRandomizeFlag(state: boolean) {
+    this.question.randomizeOptionsInd = state
+    this.update.emit(this.question);
+  }
+
+  updateMandatoryFlag(state: boolean) {
+    this.question.mandatoryInd = state
+    this.update.emit(this.question);
   }
 }

@@ -1,7 +1,7 @@
 .dashboard {
   display: flex;
   flex-wrap: wrap;
- //justify-content: center;
+  justify-content: center;
   padding: 4rem;
 
   .dashboard__card:hover {
@@ -27,6 +27,9 @@
       display: flex;
 
       .dashboard__card__title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 20px;
         color: #262b3d;
         margin-left: 15px;

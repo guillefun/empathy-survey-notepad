@@ -1,17 +1,21 @@
   <main>
     <section class="survey">
       <header class="survey__header">
-        <h1 class="survey__title">Urban Mobility Trends and Preferences</h1>
-        <p class="survey__subtitle">
-          Share your travel experiences and help us design better transportation systems for everyone
-        </p>
+        <form action="" [formGroup]="surveyForm">
+          <input type="text" class="survey__title" formControlName="title"/>
+          <input type="text" class="survey__subtitle" formControlName="description"/>
+        </form>
       </header>
-      @for ( question of questions; track question; let questionIdx = $index) {
+      @for ( question of survey?.questions; track question; let questionIdx = $index) {
         <div class="survey__question__container">
-          <empathy-question-form [question]="question" [index]="questionIdx+1"/>
+          <empathy-question-form
+            [question]="question"
+            [index]="questionIdx+1"
+            (update)="updateSurveyQuestions(questionIdx, $event)"
+          />
         </div>
       }
-      @if (questions.length === 0) {
+      @if (survey?.questions?.length === 0) {
         <div class="survey__question__container">
           <p class="empty__warning">Start by adding a question to the survey</p>
         </div>

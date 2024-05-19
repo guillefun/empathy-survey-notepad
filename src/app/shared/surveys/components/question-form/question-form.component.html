@@ -50,8 +50,8 @@
               type="text"
               placeholder="Option {{ index + 1 }}"
               formControlName="option{{ index + 1 }}"
-              (keyup.enter)="last ? addOption(0) : ''"
-              (keyup.backspace)="last ? deleteOption(index) : ''"
+              (keyup.enter)="last ? addOption() : jumpOption(index)"
+              (keydown.backspace)="last ? deleteOption(index) : ''"
             />
           </li>
         }
@@ -61,8 +61,8 @@
       <span class="saving__text"> @if(saving) { Saving... } </span>
 
       <div class="flags">
-        <empathy-toggle [label]="'Randomize options'" [defaultValue]="question.randomizeOptionsInd"/>
-        <empathy-toggle [label]="'Make required'" [defaultValue]="question.mandatoryInd" />
+        <empathy-toggle [label]="'Randomize options'" [defaultValue]="question.randomizeOptionsInd" (valueChange)="updateRandomizeFlag($event)"/>
+        <empathy-toggle [label]="'Make required'" [defaultValue]="question.mandatoryInd" (valueChange)="updateMandatoryFlag($event)"/>
       </div>
     </div>
   </div>

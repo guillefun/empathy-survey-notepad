@@ -11,6 +11,8 @@ export interface Question {
 
 export interface SurveyDto {
   id: string,
+  title: string,
+  description: string,
   questions: Question[]
 }
 

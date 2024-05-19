@@ -46,7 +46,7 @@ export class QuestionTypeSelectComponent {
   currentType: QuestionType | 0 = 0;
 
   @Output()
-  completed: EventEmitter<any> = new EventEmitter;
+  completed: EventEmitter<QuestionType> = new EventEmitter<QuestionType>();
 
   isFocus: boolean = false;
   isComponentClicked: boolean = false;
@@ -67,8 +67,8 @@ export class QuestionTypeSelectComponent {
   @HostBinding('@animations') animationState = true;
 
 
-  selectType(type: number) {
-    this.completed.emit({type})
+  selectType(type: QuestionType) {
+    this.completed.emit(type)
   }
 
 

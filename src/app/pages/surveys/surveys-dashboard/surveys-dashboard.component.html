@@ -2,7 +2,7 @@
   <section class="dashboard">
 
     @for(survey of surveys; track survey.id) {
-      <div class="dashboard__card" [routerLink]="'/survey/1'">
+      <div class="dashboard__card" [routerLink]="'/survey/'+survey.id">
         <div class="dashboard__card__header">
           <img class="dashboard__card__hexagon" src='https://icongr.am/material/hexagon.svg?size=25&color=175CD3'/>
           <span class="dashboard__card__title">Urban Mobility Trends and Preferences - {{survey.id}}</span>
