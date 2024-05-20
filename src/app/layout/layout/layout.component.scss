@@ -14,6 +14,7 @@ nav {
   justify-content: space-between;
   max-width: 1400px;
   margin: auto;
+  padding: 0 4rem;
 }
 
 nav .nav__list {
@@ -34,7 +35,7 @@ nav .nav__list {
 }
 
 .nav__logo {
-  max-width: 3.5rem;
-  max-height: 3.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 150%;
 }
