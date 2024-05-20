@@ -44,9 +44,9 @@ The project is divided in four main directories:
 
 ### Main patters
 
-Los patrones más relevantes usados en el proyecto son:
-- **Singleton pattern**: usado para inicializar una única instancia de los servicios de datos.
-- **Observer pattern**: usado en los dumb components de la aplicación para notificar al contenedor principal cuando es necesario actualizar el script de la survey.
+The most relevant patterns used in the project:
+- **Singleton pattern**: initialize a single instance of the data services.
+- **Observer pattern**: used in the dumb components of the application to notify the main container when the survey script needs to be updated.
 
 ### Routing
 
