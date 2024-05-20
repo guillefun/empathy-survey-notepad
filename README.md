@@ -84,6 +84,10 @@ The survey builder is a powerful tool, but I identified several areas for improv
 
 ## Possible improvements to my code
 
+  - SCSS variables files.
+  - Create a custom component per question type.
+  - Allow to delete any the options, not only the last of the list. This 'bug' is caused due to the way the questionId is assigned. The dynamic FormControls are generated using the sequential questionId value which is the index on the list, this can cause duplication problems of the FormControls. Changing the questionId to a unique id can solve this problem an allow to delete any option. 
+  - Better TDD.
 
 ## Problems faced
 
