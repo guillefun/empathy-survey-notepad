@@ -52,7 +52,7 @@ export class QuestionFormComponent {
     })
 
 
-    this.questionForm.get("title")?.patchValue(this.question.questionText);
+    this.questionForm.get("title")?.patchValue(this.question.questionText ?? '');
 
     this.question.options!.forEach((option: string, index: number) => {
       let parsedValue = option;
