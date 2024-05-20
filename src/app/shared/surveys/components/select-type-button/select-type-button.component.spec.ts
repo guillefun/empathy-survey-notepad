@@ -16,10 +16,17 @@ describe('SelectTypeButtonComponent', () => {
 
     fixture = TestBed.createComponent(SelectTypeButtonComponent);
     component = fixture.componentInstance;
+
+    component.text = 'Single choice'
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have not empty text value', () => {
+    expect(component.text).toEqual('Single choice');
   });
 });
