@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { httpInterceptorProviders } from "./core/common/interceptors/http.interceptor";
 import { LayoutModule } from "./layout/layout/layout.module";
 
 @NgModule({
@@ -24,6 +25,7 @@ import { LayoutModule } from "./layout/layout/layout.module";
   ],
   providers: [
     HttpClient,
+    httpInterceptorProviders,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]

@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 import { SurveyDto } from '../models/survey.model';
 
 @Injectable({
@@ -9,37 +8,33 @@ import { SurveyDto } from '../models/survey.model';
 })
 export class SurveyService {
 
-  path: string = environment.API_URL;
-
-  private static httpOptions = {
-    headers: new HttpHeaders({ 'X-API-KEY': environment.X_API_KEY }),
-  };
+  path: string = '/survey';
 
   constructor(
     private _http: HttpClient
   ) { }
 
   getAllSurveys(): Observable<SurveyDto[]> {
-    let url: string = `${this.path}/survey`
+    let url: string = `${this.path}`
 
-    return this._http.get<any>(url, SurveyService.httpOptions);
+    return this._http.get<any>(url);
   }
 
   postSurvey(survey: SurveyDto): Observable<SurveyDto> {
-    let url: string = `${this.path}/survey`
+    let url: string = `${this.path}`
 
-    return this._http.post<any>(url, survey, SurveyService.httpOptions);
+    return this._http.post<any>(url, survey);
   }
 
   getSurvey(id: string): Observable<SurveyDto> {
-    let url: string = `${this.path}/survey/${id}`
+    let url: string = `${this.path}/${id}`
 
-    return this._http.get<any>(url, SurveyService.httpOptions);
+    return this._http.get<any>(url);
   }
 
   updateSurvey(question: SurveyDto, id: string): Observable<SurveyDto> {
-    let url: string = `${this.path}/survey/${id}`
+    let url: string = `${this.path}/${id}`
 
-    return this._http.put<any>(url, question, SurveyService.httpOptions);
+    return this._http.put<any>(url, question);
   }
 }

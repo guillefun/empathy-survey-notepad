@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SurveysDashboardComponent } from './surveys-dashboard.component';
 
 describe('SurveysDashboardComponent', () => {
@@ -8,10 +10,11 @@ describe('SurveysDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule, BrowserAnimationsModule],
       declarations: [SurveysDashboardComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(SurveysDashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

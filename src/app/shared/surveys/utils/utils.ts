@@ -13,7 +13,7 @@ export class SurveyUtils {
           questionId: 1,
           questionText: '',
           mandatoryInd: true,
-          questionType: 1, // Multiple Choice
+          questionType: 1,
           options: ['-','-'],
           randomizeOptionsInd: false,
         },

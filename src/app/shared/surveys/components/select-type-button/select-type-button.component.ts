@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'empathy-select-type-button',
@@ -12,7 +12,7 @@ export class SelectTypeButtonComponent {
   text: string = '';
 
   @Input()
-  icon!: IconDefinition;
+  icon: IconDefinition = faCircleCheck;
 
   @Output()
   action: EventEmitter<boolean> = new EventEmitter<boolean>();
