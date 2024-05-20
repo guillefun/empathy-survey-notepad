@@ -11,7 +11,7 @@ describe('ToggleComponent', () => {
       declarations: [ToggleComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ToggleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -20,4 +20,15 @@ describe('ToggleComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have default state', () => {
+    expect(component.value).toEqual(false);
+  });
+
+  it('should update state', () => {
+    component.setValue();
+    expect(component.value).toEqual(true);
+  });
+
+
 });
