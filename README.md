@@ -94,7 +94,7 @@ The survey builder is a powerful tool, but I identified several areas for improv
 ## Problems faced
 
   - The SurveyDto provided in Swagger was not correct, that lead me to generate a wrong survey.
-  - From Friday to Saturday morning I was on a trip, so it was a little difficult for me to perform the technical test since I only had Sunday to do it. Because of this I think there are certain aspects that could be improved:
+  - I had little time to perform the technical test, so I see several areas for improvement:
     - The question editor should have a different editor for each type of question (currently the same component is used for single and multiple choice). I had this approach in mind from the beginning but due to lack of time I decided to leave it aside in order to deliver the rest of the project on time.
     - It is very likely that some kind of validation for a specific use case is missing.
     - I added animations but not as many as I would like.
